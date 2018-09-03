@@ -44,7 +44,7 @@ import (
 const (
 	// defaultMinPeers is the minimum number of peers nodes should always be
 	// connected to.
-	defaultMinPeers = 3
+	defaultMinPeers = 20
 
 	// defaultBackoff is the starting point for exponential backoff for
 	// reconnecting to persistent peers.
@@ -989,6 +989,7 @@ func (s *server) Start() error {
 		}
 
 		s.wg.Add(1)
+		fmt.Printf("+++defaultMinPeers = %v\n\n\n", defaultMinPeers)
 		go s.peerBootstrapper(defaultMinPeers, bootstrappers)
 	} else {
 		srvrLog.Infof("Auto peer bootstrapping is disabled")
