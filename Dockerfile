@@ -8,7 +8,7 @@ ENV GODEBUG netdns=cgo
 RUN apk add --no-cache \
     git \
     make \
-&&  git clone https://github.com/lightningnetwork/lnd /go/src/github.com/lightningnetwork/lnd \
+&&  git git@github.com:taketa/lnd.git /go/src/github.com/lightningnetwork/lnd \
 &&  cd /go/src/github.com/lightningnetwork/lnd \
 &&  make \
 &&  make install
@@ -29,5 +29,5 @@ COPY --from=builder /go/bin/lncli /bin/
 COPY --from=builder /go/bin/lnd /bin/
 
 # Specify the start command and entrypoint as the lnd daemon.
-ENTRYPOINT ["lnd"]
-CMD ["lnd"]
+ENTRYPOINT lnd --configfile=/root/.lnd/lnd.conf
+CMD lnd --configfile=/root/.lnd/lnd.conf
