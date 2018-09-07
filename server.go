@@ -989,7 +989,7 @@ func (s *server) Start() error {
 		}
 
 		s.wg.Add(1)
-		fmt.Printf("+++defaultMinPeers = %v\n\n\n", defaultMinPeers)
+		fmt.Printf("+++defaultMinPeerssss = %v\n\n\n", defaultMinPeers)
 		go s.peerBootstrapper(defaultMinPeers, bootstrappers)
 	} else {
 		srvrLog.Infof("Auto peer bootstrapping is disabled")
@@ -1399,6 +1399,7 @@ func (s *server) peerBootstrapper(numTargetPeers uint32,
 // receive an up to date network view as soon as possible.
 func (s *server) initialPeerBootstrap(ignore map[autopilot.NodeID]struct{},
 	numTargetPeers uint32, bootstrappers []discovery.NetworkPeerBootstrapper) {
+	fmt.Printf("\n\n++++in initialPeerBootstrap\n\n")
 
 	var wg sync.WaitGroup
 
@@ -1433,6 +1434,7 @@ func (s *server) initialPeerBootstrap(ignore map[autopilot.NodeID]struct{},
 
 		// Then, we'll attempt to establish a connection to the
 		// different peer addresses retrieved by our bootstrappers.
+		fmt.Printf("\n\n\n+++before range bootstrapAddrs\n\n\n")
 		for _, bootstrapAddr := range bootstrapAddrs {
 			wg.Add(1)
 			go func(addr *lnwire.NetAddress) {
