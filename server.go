@@ -1439,6 +1439,7 @@ func (s *server) initialPeerBootstrap(ignore map[autopilot.NodeID]struct{},
 				defer wg.Done()
 
 				errChan := make(chan error, 1)
+				fmt.Printf("\n\n\n+++++++ADDR: %v\n\n\n", addr)
 				go s.connectToPeer(addr, errChan)
 
 				// We'll only allow this connection attempt to
